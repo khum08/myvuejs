@@ -1,8 +1,10 @@
 import { arrayMethods } from "./array";
+import Dep from "./dep";
 
 class Observer {
   constructor(data) {
     // console.log("Observer", data);
+    this.dep = new Dep();
     Object.defineProperty(data, "__ob__", {
       value: this,
       enumerable: false,
@@ -35,10 +37,15 @@ class Observer {
 }
 
 function defineReactive(target, key, value) {
-  observe(value);
+  let childOb = observe(value);
+  let dep = new Dep();
   Object.defineProperty(target, key, {
     get() {
       console.log("取值::", value);
+      dep.depend();
+      if (childOb) {
+        childOb.dep.depend();
+      }
       return value;
     },
     set(newValue) {
@@ -46,6 +53,7 @@ function defineReactive(target, key, value) {
       observe(newValue);
       console.log("设值::", newValue);
       value = newValue;
+      dep.notify();
     },
   });
 }

@@ -29,9 +29,11 @@ methodsToPatch.forEach(function (method) {
           break;
       }
       if (inserted) {
-        console.log("array call", method, args, inserted);
         ob.observeArray(inserted);
       }
+
+      this.__ob__.dep.notify();
+      // console.log("array call", method, args, inserted);
       return result;
     },
     enumerable: false,

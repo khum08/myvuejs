@@ -1,5 +1,5 @@
 import babel from "@rollup/plugin-babel";
-
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 /**
  * @type {import('rollup').RollupOptions}
  */
@@ -16,5 +16,6 @@ export default {
       babelHelpers: "bundled",
       exclude: "node_modules/**",
     }),
+    nodeResolve(),
   ],
 };

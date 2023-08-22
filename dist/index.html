@@ -9,20 +9,40 @@
 
 <body>
     <script src="vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script> -->
+
+    <div id="app" style="font-size: 14px;">
+        <div style="background-color: red;color: white;">title</div>
+        <div>
+            hello {{name}}
+        </div>
+        <div>{{hobbies}}</div>
+    </div>
     <script>
         var vm = new Vue({
             el: '#app',
             data() {
                 return {
+                    name: " xiaoming",
                     message: 'Hello Vue!',
                     child: {
                         name: 'Hello child!'
-                    }
+                    },
+                    hobbies: [
+                        "ts", "js", {
+                            name: 'Hello array',
+                        }
+                    ]
                 }
             }
         })
-        console.log(vm);
-        console.log(vm.child.name);
+        // vm.hobbies[1] = 'java';
+
+        setTimeout(function () {
+            vm.name = ' xiaohong'
+            vm.hobbies.push('vue')
+            // vm._update(vm._render());
+        }, 2000)
     </script>
 </body>
 

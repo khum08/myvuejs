@@ -1,4 +1,4 @@
-import observe from "./observe/index.js";
+import observe from "./observe/";
 
 export default function initState(vm) {
   const { data } = vm.$options;
@@ -23,7 +23,7 @@ function proxy(target, sourceKey, key) {
 function initData(vm) {
   let data = vm.$options.data;
   data = typeof data === "function" ? data.call(vm) : data;
-  console.log(data);
+  //   console.log(data);
   vm._data = data;
   observe(data);
   proxy(vm, "_data", data);

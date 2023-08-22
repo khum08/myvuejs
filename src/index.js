@@ -1,8 +1,9 @@
-import initMixins from "./init";
+import { initMixin } from "./init";
+import { lifecycleMixin } from "./lifecycle";
 
 function Vue(options) {
-  initMixins(Vue);
   this._init(options);
 }
-
+initMixin(Vue);
+lifecycleMixin(Vue);
 export default Vue;
